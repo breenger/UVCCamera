@@ -26,9 +26,8 @@ import org.apache.tools.ant.taskdefs.condition.Os
 
 android {
 	compileSdkVersion versionCompiler
-	buildToolsVersion versionBuildTool
 
-	compileOptions {
+    compileOptions {
 		sourceCompatibility javaSourceCompatibility
 		targetCompatibility javaTargetCompatibility
 	}
@@ -76,10 +75,12 @@ task ndkBuild(type: Exec, description: 'Compile JNI source via NDK') {
 }
 
 task ndkClean(type: Exec, description: 'clean JNI libraries') {
+
 	println('executing ndkBuild clean')
 	def ndkBuildPath = getNdkBuildPath();
 	commandLine ndkBuildPath, 'clean', '-C', file('src/main').absolutePath
 }
+
 
 clean.dependsOn 'ndkClean'
 
